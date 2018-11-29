@@ -141,6 +141,17 @@
                 <td>capitalizado:false</td>
                 <td>{{nombreMin | capitalizado:false}}</td>
             </tr>
+            <tr>
+                <td>{{palabraSecreta}}</td>
+                <td>
+                    cifrado <button (click)="activar = !activar" type="button" class="btn btn-info">
+                        Ver/ocultar
+                            </button>
+                </td>
+                <td>{{palabraSecreta | cifrado:activar}}
+
+                </td>
+            </tr>
 
         </tbody>
     </table>

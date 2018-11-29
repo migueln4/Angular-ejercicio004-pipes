@@ -30,4 +30,8 @@ export class AppComponent {
 
   video:string = "s2NPK5QKiec";
 
+  activar:boolean = true;
+
+  palabraSecreta:string = "METAL \\m/";
+
 }

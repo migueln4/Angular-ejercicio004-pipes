@@ -8,6 +8,7 @@ import {registerLocaleData} from '@angular/common';//Necesario para poner las fe
 
 import {CapitalizadoPipe} from './pipes/capitalizado.pipe';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { CifradoPipe } from './pipes/cifrado.pipe';
 
 registerLocaleData(localeEs);//Necesario para poner las fechas en español
 
@@ -15,7 +16,8 @@ registerLocaleData(localeEs);//Necesario para poner las fechas en español
   declarations: [
     AppComponent,
     CapitalizadoPipe,
-    DomseguroPipe //por supuesto, hay que añadir aquí el nuevo pipe que se haya creado, al igual que pasa con los componentes.
+    DomseguroPipe,
+    CifradoPipe //por supuesto, hay que añadir aquí el nuevo pipe que se haya creado, al igual que pasa con los componentes.
   ],
   imports: [
     BrowserModule
