@@ -40,25 +40,108 @@
                 <td>{{nombre | slice:1:5}}</td>
             </tr>
             <tr>
-                <td>{{nombre}}</td>
-                <td>lowercase</td>
-                <td>{{nombre | lowercase}}</td>
+                <td>{{pi}}</td>
+                <td>number</td>
+                <td>{{pi | number}}</td>
+                <!--Por defecto, el number muestra tres dígitos al principio-->
             </tr>
             <tr>
-                <td>{{nombre}}</td>
-                <td>lowercase</td>
-                <td>{{nombre | lowercase}}</td>
+                <td>{{pi}}</td>
+                <!--La expresión que se le pasa como argumento debe ser un string obligatoriamente con un formato: 'número de cifras que queremos para el número.mínimo de cifras para el decimal-máximo número de cifras para el decimal-->
+                <td>number:'3.0-0'</td>
+                <td>{{pi | number:'3.0-0'}}</td>
             </tr>
             <tr>
-                <td>{{nombre}}</td>
-                <td>lowercase</td>
-                <td>{{nombre | lowercase}}</td>
+                <td>{{pi}}</td>
+                <td>number:'1.0-2'</td>
+                <td>{{pi | number:'1.0-2'}}</td>
             </tr>
             <tr>
-                <td>{{nombre}}</td>
-                <td>lowercase</td>
-                <td>{{nombre | lowercase}}</td>
+                <td>{{numeroCualquiera}}</td>
+                <!--Ojo, ¡que sí que hace el redondeo!-->
+                <td>number:'1.0-2'</td>
+                <td>{{numeroCualquiera | number:'1.0-2'}}</td>
             </tr>
+            <tr>
+                <td>{{a}}</td>
+                <td>percent</td>
+                <td>{{a | percent}}</td>
+                <!--Básicamente, lo que hace es multiplicar por 100 y añadir el símbolo del porcentaje-->
+            </tr>
+            <tr>
+                <td>{{a}}</td>
+                <!--También se puede editar con las mismas opciones que incluye el number-->
+                <td>percent:'2.2-2'</td>
+                <td>{{a | percent:'2.2-2'}}</td>
+            </tr>
+            <tr>
+                <!--Cuando se utiliza Currency es solo para utilizar un formato de moneda. Para esto hay que tener presente siempre el ISO 4217 para las monedas que tiene cada país.-->
+                <td>{{salario}}</td>
+                <td>currency</td>
+                <td>{{salario | currency}}</td>
+                <!--Por defecto, sin hacer ninguna modificación, aparece el precio en dólares.-->
+            </tr>
+            <tr>
+                <td>{{salario}}</td>
+                <td>currency:'EUR'</td>
+                <td>{{salario | currency:'EUR'}}</td>
+                <!--Hay que ir añadiendo los códigos del ISO 4217 para que coja la moneda adecuada. Aun así, te lo pone en un formato que, en España, no es el habitual.-->
+            </tr>
+            <tr>
+                <td>{{salario}}</td>
+                <td>currency:'EUR':'code'</td>
+                <td>{{salario | currency:'EUR':'code'}}</td>
+                <!--A continuación, se pueden añadir tres cadenas: 'code', 'symbol' o 'symbol-narrow'-->
+            </tr>
+            <tr>
+                <td>{{salario+0.005}}</td>
+                <td>currency:'EUR':'code':'4.0-0'</td>
+                <td>{{salario | currency:'EUR':'code':'4.0-0'}}</td>
+                <!--Lo que hacemos aquí es pedir cuatro cifras en la parte entera y ningún decimal. Acepta la misma cadena que el number o el percent. OJO, que tiene que estar también puesto el parámetro de antes.-->
+            </tr>
+            <tr>
+                <td>{{salario}}</td>
+                <td>number:'.2-2'</td>
+                <td>{{salario | number:'.2-2'}}</td>
+                <!--Si lo que se quiere es el formato de cifra económica pero sin el símbolo ni nada, hay que utilizar el pipe de number. En este caso, no se le pone ningún número al principio, así que coge la parte entera completa sin recortar nada.-->
+            </tr>
+            <tr>
+                <!--Por defecto, un objeto del tipo Date devuelve toda la información, incluyendo la hora.-->
+                <td>{{fecha}}</td>
+                <td>date</td>
+                <td>{{fecha | date}}</td>
+                <!--Por defecto, este pipe lo que imprime es un resumen de la fecha con mes, día y año.-->
+            </tr>
+            <tr>
+                <td>{{fecha}}</td>
+                <td>date:'medium'</td>
+                <td>{{fecha | date:'medium'}}</td>
+            </tr>
+            <tr>
+                <!--Lo bueno de esto es que se puede personalizar viendo los patrones de esta web: https://angular.io/api/common/DatePipe-->
+                <td>{{fecha}}</td>
+                <td>date:'HH:mm:ss - d/L/y'</td>
+                <td>{{fecha | date:'HH:mm:ss - d/L/y'}}</td>
+            </tr>
+            <tr>
+                <td>{{fecha}}</td>
+                <td>date:'d \'de\' MMMM \'de\' y'</td>
+                <td>{{fecha | date:'d \'de\' MMMM \'de\' y'}}</td>
+                <!--Esto saca la fecha en inglés y nosotra todavía la queremos en español.-->
+            </tr>
+            <tr>
+                <!--Para hacer un pipe personalizado de forma manual, hay que darle un nombre propio-->
+                <td>{{nombreMin}}</td>
+                <td>capitalizado</td>
+                <td>{{nombreMin | capitalizado}}</td>
+            </tr>
+            <tr>
+                <!--Para hacer un pipe personalizado de forma manual, hay que darle un nombre propio-->
+                <td>{{nombreMin}}</td>
+                <td>capitalizado:false</td>
+                <td>{{nombreMin | capitalizado:false}}</td>
+            </tr>
+
         </tbody>
     </table>
 
@@ -66,6 +149,24 @@
     <!--También hay una forma de trabajar con el slice combinándolo con el *ngFor. De primeras, el *ngFor recorre el array que se le está pasando. Pero en él se puede añadir un pipe del tipo slice que saque solo lo que nos interesa realmente.-->
     <ul></ul>
     <li *ngFor="let numero of numerosArray | slice:2:30">{{numero}}</li>
-    <!--FALTA COMENTARIO-->
+    <!--En el final de la lista se puede poner un número cualquiera. Si el número es mayor que la extensión de la lista (array o lo que sea), no dará ningún problema. Se para cuando acabe y ya está.-->
+
+    <h4>JSON</h4>
+
+    {{luchador}}
+    <br>
+    <!--Cada vez que se quiera imprimir algo que no es una variable de forma nativa, esto va a hacer que aparezca un Object object entre llaves. Por eso hay que usar un pipe.-->
+    {{luchador | json}}
+    <br>
+    <pre>{{luchador | json}}</pre>
+    <!--Esta forma de verlo es gracias a Bootstrap 4.-->
+
+    <br><br>
+    <h4>YouTube <small>video</small></h4>
+    <hr>
+    <!--Lo que va a hacer es editar la propiedad src para que la maneje Angular y ahí poder utilizar el pipe que hemos diseñado. Al poner los corchetes en la propiedad no hay que poner {} en el atributo. Esto es totalmente reutilizable para cualquier vídeo de YouTube.-->
+    <iframe width="560" height="315" [src]="video | domseguro:'https://www.youtube-nocookie.com/embed/'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </div>
+
+<br><br><br><br><br><br><br>
