@@ -1,0 +1,22 @@
+Las PIPES cambian los datos solamente de forma visual. No cambia ningún tipo de vista.
+
+Son algo así como los filtros de AngularJS.
+
+Los pipes disponibles en Angular son:
+
+- currency
+- date
+- uppercase -> Devuelve una cadena en mayúsculas
+- json
+- limitTo
+- lowercase
+- async
+- decimal
+- percent
+
+Sobre las fechas, cuando se crea una nueva fecha en JavaScript los meses empiezan en cero. Por eso, si se hace:
+let fecha = new Date(1985,10,21); //hace referencia a noviembre porque va del cero al 10, que es el 11.
+
+En este caso, si se hace
+{{fecha | date:"dd/MM/yy"}} en la pantalla aparece 21/11/1985
+Incluso se pueden pasar cosas de inglés a español.
