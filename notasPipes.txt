@@ -20,3 +20,28 @@ let fecha = new Date(1985,10,21); //hace referencia a noviembre porque va del ce
 En este caso, si se hace
 {{fecha | date:"dd/MM/yy"}} en la pantalla aparece 21/11/1985
 Incluso se pueden pasar cosas de inglés a español.
+
+-----CREAR UN PIPE PERSONALIZADO----
+
+Para crear un pipe personalizado, hay que hacer lo siguiente:
+- En la carpeta app se crea una nueva carpeta llamada "pipes"
+- Dentro de esa nueva carpeta se crea un nuevo archivo con el nombre: nombreDelPipe.pipe.ts
+
+Esta es la sintaxis básica:
+
+import {Pipe, PipeTransform} from '@angular/core';
+import { Type } from '@angular/compiler';
+
+@Pipe({
+    name: 'name'
+})
+export class namePipe implements PipeTransform {
+    transform(value:type,args:any[]):type {
+        return;
+    }
+}
+
+También se pueden generar de forma automática por consola:
+
+ng g p rutadondelopongamos
+
